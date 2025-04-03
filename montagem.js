@@ -77,11 +77,25 @@ document.addEventListener("DOMContentLoaded", function () {
         desenharMontagem();
     });
 
-    // Botão de download
+    // Botão de download corrigido
     downloadBtn.addEventListener("click", function () {
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = fotoCanvas.width;
+        tempCanvas.height = fotoCanvas.height;
+        const tempCtx = tempCanvas.getContext("2d");
+        
+        if (foto.width && foto.height) {
+            const scaledWidth = foto.width * escala;
+            const scaledHeight = foto.height * escala;
+            tempCtx.drawImage(foto, fotoX, fotoY, scaledWidth, scaledHeight);
+        }
+        if (moldura.width && moldura.height) {
+            tempCtx.drawImage(moldura, 0, 0, tempCanvas.width, tempCanvas.height);
+        }
+        
         const link = document.createElement("a");
         link.download = "montagem.png";
-        link.href = fotoCanvas.toDataURL("image/png");
+        link.href = tempCanvas.toDataURL("image/png");
         link.click();
     });
 });
