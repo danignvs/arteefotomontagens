@@ -15,20 +15,20 @@
         <span class="nav prev" onclick="navegar(-1)">&#10094;</span>
         <img id="imagemPopup" src="" alt="">
         <span class="nav next" onclick="navegar(1)">&#10095;</span>
-        <a id="montagemLink" href="#" class="montagem-btn">Fazer Montagem</a>
+        <a id="montagemLink" href="#" class="montagem-btn" target="_blank">Fazer Montagem</a>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const imagens = [
                 { url: "https://lh5.googleusercontent.com/-xQftWSAXNpU/VB3oQbFWudI/AAAAAAAAEeM/Qu_HnHbZLB0/s0/anjoAnjinhafeliz.png", titulo: "Anjinha Feliz" },
                 { url: "https://lh5.googleusercontent.com/-3SwcpROrcn8/VB3oQVnuZWI/AAAAAAAAEeE/CUk37kJQ6nU/s0/anjoanjinhosecachorrinho.png", titulo: "Anjinhos" },
-                { url: "https://lh5.googleusercontent.com/-xQftWSAXNpU/VB3oQbFWudI/AAAAAAAAEeM/Qu_HnHbZLB0/s0/anjoAnjinhafeliz.png", titulo: "Anjinha Feliz" },
                 { url: "https://lh5.googleusercontent.com/-zKBwRaOFaTY/VB3oQ4_QPVI/AAAAAAAAEeQ/X2EutKEGs-s/s0/anjopalito.png", titulo: "Anjinho" }
             ];
 
             const galeria = document.getElementById("galeria");
             const popup = document.getElementById("popup");
             const imagemPopup = document.getElementById("imagemPopup");
+            const montagemLink = document.getElementById("montagemLink");
             let imagemAtual = 0;
 
             imagens.forEach((img, index) => {
@@ -41,6 +41,7 @@
             window.abrirPopup = function(index) {
                 imagemAtual = index;
                 imagemPopup.src = imagens[index].url;
+                montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[index].url)}`;
                 popup.style.display = "flex";
             }
 
@@ -51,6 +52,7 @@
             window.navegar = function(direcao) {
                 imagemAtual = (imagemAtual + direcao + imagens.length) % imagens.length;
                 imagemPopup.src = imagens[imagemAtual].url;
+                montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[imagemAtual].url)}`;
             }
         });
     </script>
