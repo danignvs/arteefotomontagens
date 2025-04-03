@@ -1,30 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
+    carregarGaleria();
+});
+
+function carregarGaleria() {
+    const imagens = [
+        { url: "molduras/anjinha_feliz.png", titulo: "Anjinha Feliz" },
+        { url: "molduras/anjinhos.png", titulo: "Anjinhos" },
+        { url: "molduras/anjinho.png", titulo: "Anjinho" }
+    ];
+
+    const galeria = document.getElementById("galeria");
+    imagens.forEach((imagem, index) => {
+        let imgElement = document.createElement("img");
+        imgElement.src = imagem.url;
+        imgElement.alt = imagem.titulo;
+        imgElement.onclick = () => abrirPopup(index, imagens);
+        galeria.appendChild(imgElement);
+    });
+}
+
+function abrirPopup(index, imagens) {
     const popup = document.getElementById("popup");
     const imagemPopup = document.getElementById("imagemPopup");
     const montagemLink = document.getElementById("montagemLink");
-    const imagens = Array.from(document.querySelectorAll(".galeria img"));
-    let imagemAtual = 0;
 
-    imagens.forEach((img, index) => {
-        img.addEventListener("click", function () {
-            abrirPopup(index);
-        });
-    });
+    imagemPopup.src = imagens[index].url;
+    montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[index].url)}`;
 
-    window.abrirPopup = function(index) {
-        imagemAtual = index;
-        imagemPopup.src = imagens[index].src;
-        montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[index].src)}`;
-        popup.style.display = "flex";
-    }
+    popup.style.display = "flex";
+}
 
-    window.fecharPopup = function() {
-        popup.style.display = "none";
-    }
+function fecharPopup() {
+    document.getElementById("popup").style.display = "none";
+}
 
-    window.navegar = function(direcao) {
-        imagemAtual = (imagemAtual + direcao + imagens.length) % imagens.length;
-        imagemPopup.src = imagens[imagemAtual].src;
-        montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[imagemAtual].src)}`;
-    }
-});
+function navegar(direcao) {
+    const imagemAtual = document.getElementById("imagemPopup").src;
+    const imagens = Array.from(document.querySelectorAll(".galeria img")).map(img => img.src);
+    let indexAtual = imagens.indexOf(imagemAtual);
+
+    let novoIndex = indexAtual + direcao;
+    if (novoIndex < 0) novoIndex = imagens.length - 1;
+    if (novoIndex >= imagens.length) novoIndex = 0;
+
+    abrirPopup(novoIndex, imagens.map(src => ({ url: src })));
+}
