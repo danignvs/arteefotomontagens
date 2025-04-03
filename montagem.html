@@ -4,81 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montagem de Foto</title>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        canvas { border: 1px solid black; margin-top: 20px; }
-        .controls { margin-top: 10px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="montagem.js"></script>
 </head>
 <body>
     <h1>Montagem de Foto</h1>
-    <input type="file" id="upload-foto" accept="image/*">
-    <canvas id="editor" width="500" height="500"></canvas>
-    <div class="controls">
-        <button id="zoom-in">Zoom +</button>
-        <button id="zoom-out">Zoom -</button>
-        <button id="mover">Mover</button>
-        <button id="download">Baixar Montagem</button>
-    </div>
-    <script>
-        const canvas = document.getElementById("editor");
-        const ctx = canvas.getContext("2d");
-        let foto = new Image();
-        let moldura = new Image();
-        let escala = 1.0;
-        let offsetX = 0, offsetY = 0;
-        let movendo = false;
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const molduraUrl = urlParams.get("moldura");
-        if (molduraUrl) {
-            moldura.src = decodeURIComponent(molduraUrl);
-        }
-
-        moldura.onload = () => { desenharMontagem(); };
-        foto.onload = () => { desenharMontagem(); };
-
-        document.getElementById("upload-foto").addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = () => { foto.src = reader.result; };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        function desenharMontagem() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(foto, offsetX, offsetY, foto.width * escala, foto.height * escala);
-            ctx.drawImage(moldura, 0, 0, canvas.width, canvas.height);
-        }
-
-        document.getElementById("zoom-in").addEventListener("click", () => {
-            escala *= 1.1;
-            desenharMontagem();
-        });
-
-        document.getElementById("zoom-out").addEventListener("click", () => {
-            escala *= 0.9;
-            desenharMontagem();
-        });
-
-        document.getElementById("mover").addEventListener("mousedown", () => { movendo = true; });
-        document.addEventListener("mouseup", () => { movendo = false; });
-        document.addEventListener("mousemove", (e) => {
-            if (movendo) {
-                offsetX += e.movementX;
-                offsetY += e.movementY;
-                desenharMontagem();
-            }
-        });
-
-        document.getElementById("download").addEventListener("click", () => {
-            const link = document.createElement("a");
-            link.download = "montagem.png";
-            link.href = canvas.toDataURL("image/png");
-            link.click();
-        });
-    </script>
+    <input type="file" id="fotoInput" accept="image/*">
+    <canvas id="fotoCanvas" width="500" height="500"></canvas>
+    <button id="downloadBtn">Baixar Montagem</button>
 </body>
 </html>
