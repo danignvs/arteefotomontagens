@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function carregarGaleria() {
         // Exemplo de imagens, substituir por um banco de dados real
         imagens = [
-            { url: "img1.jpg", titulo: "Moldura 1" },
-            { url: "img2.jpg", titulo: "Moldura 2" },
-            { url: "img3.jpg", titulo: "Moldura 3" }
+            { url: "https://lh5.googleusercontent.com/-xQftWSAXNpU/VB3oQbFWudI/AAAAAAAAEeM/Qu_HnHbZLB0/s0/anjoAnjinhafeliz.png", titulo: "anjinha feliz" },
+            { url: "https://lh5.googleusercontent.com/-3SwcpROrcn8/VB3oQVnuZWI/AAAAAAAAEeE/CUk37kJQ6nU/s0/anjoanjinhosecachorrinho.png", titulo: "anjinhos" },
+            { url: "https://lh5.googleusercontent.com/-zKBwRaOFaTY/VB3oQ4_QPVI/AAAAAAAAEeQ/X2EutKEGs-s/s0/anjopalito.png", titulo: "anjinho" }
         ];
 
         imagens.forEach((img, index) => {
