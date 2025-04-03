@@ -28,6 +28,7 @@ function abrirPopup(index, imagens) {
     montagemLink.href = `montagem.html?moldura=${encodeURIComponent(imagens[index].url)}`;
 
     popup.style.display = "flex";
+    popup.dataset.index = index; // Salvar o índice atual no popup
 }
 
 function fecharPopup() {
@@ -35,13 +36,19 @@ function fecharPopup() {
 }
 
 function navegar(direcao) {
-    const imagemAtual = document.getElementById("imagemPopup").src;
-    const imagens = Array.from(document.querySelectorAll(".galeria img")).map(img => img.src);
-    let indexAtual = imagens.indexOf(imagemAtual);
+    const popup = document.getElementById("popup");
+    const imagemPopup = document.getElementById("imagemPopup");
+    const imagens = [
+        { url: "molduras/chico-bento_2025.png", titulo: "Chico Bento" },
+        { url: "molduras/chico-bento_e_rosinha_2025.png", titulo: "Chico Bento e Rosinha" },
+        { url: "molduras/rosinha_2025.png", titulo: "Rosinha" }
+    ];
 
+    let indexAtual = parseInt(popup.dataset.index, 10);
     let novoIndex = indexAtual + direcao;
+
     if (novoIndex < 0) novoIndex = imagens.length - 1;
     if (novoIndex >= imagens.length) novoIndex = 0;
 
-    abrirPopup(novoIndex, imagens.map(src => ({ url: src })));
+    abrirPopup(novoIndex, imagens);
 }
