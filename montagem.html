@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montagem de Foto</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
     <script defer src="montagem.js"></script>
 </head>
 <body>
-    <h1>Montagem de Foto</h1>
-    <input type="file" id="fotoInput" accept="image/*">
-    <div class="controls">
-        <button id="zoomIn">+</button>
-        <button id="zoomOut">-</button>
-    </div>
-    <canvas id="fotoCanvas" width="500" height="500"></canvas>
-    <button id="downloadBtn">Baixar Montagem</button>
+    <!-- O cabeçalho será carregado dinamicamente aqui -->
+
+    <main id="conteudo">
+        <h1>Montagem de Foto</h1>
+        <input type="file" id="fotoInput" accept="image/*">
+        <div class="controls">
+            <button id="zoomIn">+</button>
+            <button id="zoomOut">-</button>
+        </div>
+        <canvas id="fotoCanvas" width="500" height="500"></canvas>
+        <button id="downloadBtn">Baixar Montagem</button>
+    </main>
+
+    <!-- O rodapé será carregado dinamicamente aqui -->
 </body>
 </html>

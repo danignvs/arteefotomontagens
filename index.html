@@ -8,16 +8,22 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <h1>Galeria de Molduras</h1>
-    <div class="galeria" id="galeria"></div>
+    <!-- O cabeçalho será carregado dinamicamente aqui -->
 
-    <div class="popup" id="popup">
-        <button class="fechar" onclick="fecharPopup()">&times;</button>
-        <button class="nav prev" onclick="navegar(-1)">&#10094;</button>
-        <img id="imagemPopup" src="" alt="Imagem em destaque">
-        <button class="nav next" onclick="navegar(1)">&#10095;</button>
-        <!-- Botão "Fazer Montagem" -->
-        <a id="montagemLink" href="#" class="montagem-btn">Fazer Montagem</a>
-    </div>
+    <main id="conteudo">
+        <h1>Galeria de Molduras</h1>
+        <div class="galeria" id="galeria"></div>
+
+        <div class="popup" id="popup">
+            <button class="fechar" onclick="fecharPopup()">&times;</button>
+            <button class="nav prev" onclick="navegar(-1)">&#10094;</button>
+            <img id="imagemPopup" src="" alt="Imagem em destaque">
+            <button class="nav next" onclick="navegar(1)">&#10095;</button>
+            <!-- Botão "Fazer Montagem" -->
+            <a id="montagemLink" href="#" class="montagem-btn">Fazer Montagem</a>
+        </div>
+    </main>
+
+    <!-- O rodapé será carregado dinamicamente aqui -->
 </body>
 </html>

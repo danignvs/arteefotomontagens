@@ -1,6 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-    carregarGaleria();
+    carregarTemplate(); // Carregar cabeçalho e rodapé
+    carregarGaleria();  // Carregar a galeria de imagens
 });
+
+function carregarTemplate() {
+    // Carregar o cabeçalho
+    fetch("templates/header.html") // Ajuste o caminho aqui
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML("afterbegin", data);
+        })
+        .catch(error => console.error("Erro ao carregar o cabeçalho:", error));
+
+    // Carregar o rodapé
+    fetch("templates/footer.html") // Ajuste o caminho aqui
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML("beforeend", data);
+        })
+        .catch(error => console.error("Erro ao carregar o rodapé:", error));
+}
 
 function carregarGaleria() {
     const imagens = [
