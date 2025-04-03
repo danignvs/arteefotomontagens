@@ -5,128 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeria de Molduras</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Galeria de Molduras</h1>
-        <input type="text" id="search" placeholder="Buscar molduras...">
-    </header>
-    
-    <nav>
-        <ul id="tema-menu"></ul>
-    </nav>
-    
-    <main>
-        <section id="galeria"></section>
-        <div id="paginacao"></div>
-    </main>
-    
-    <div id="popup" class="hidden">
-        <span id="fechar-popup">&times;</span>
-        <img id="imagem-popup">
-        <button id="anterior">&#10094;</button>
-        <button id="proximo">&#10095;</button>
+    <h1>Galeria de Molduras</h1>
+    <div class="galeria" id="galeria"></div>
+    <div class="popup" id="popup">
+        <span class="fechar" onclick="fecharPopup()">&times;</span>
+        <span class="nav prev" onclick="navegar(-1)">&#10094;</span>
+        <img id="imagemPopup" src="" alt="">
+        <span class="nav next" onclick="navegar(1)">&#10095;</span>
+        <a id="montagemLink" href="#" class="montagem-btn">Fazer Montagem</a>
     </div>
-    
-    <footer>
-        <a href="montagem.html">Fazer Montagem</a>
-    </footer>
-</body>
-</html>
-
-<!-- Página de Montagem -->
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Montagem de Fotos</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="montagem.js" defer></script>
-</head>
-<body>
-    <header>
-        <h1>Montagem de Fotos</h1>
-    </header>
-    <main>
-        <input type="file" id="upload-foto" accept="image/*">
-        <select id="selecionar-moldura"></select>
-        <canvas id="editor"></canvas>
-        <div>
-            <button id="zoom-in">+</button>
-            <button id="zoom-out">-</button>
-            <button id="mover">Mover</button>
-            <button id="download">Baixar Montagem</button>
-        </div>
-    </main>
-    <script>
-        const canvas = document.getElementById("editor");
-        const ctx = canvas.getContext("2d");
-        let foto = new Image();
-        let moldura = new Image();
-        let escala = 1.0;
-        let offsetX = 0, offsetY = 0;
-        let movendo = false;
-
-        document.getElementById("upload-foto").addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    foto.src = reader.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById("selecionar-moldura").addEventListener("change", (e) => {
-            moldura.src = e.target.value;
-        });
-
-        foto.onload = moldura.onload = function () {
-            desenharMontagem();
-        };
-
-        function desenharMontagem() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(foto, offsetX, offsetY, foto.width * escala, foto.height * escala);
-            ctx.drawImage(moldura, 0, 0, canvas.width, canvas.height);
-        }
-
-        document.getElementById("zoom-in").addEventListener("click", () => {
-            escala *= 1.1;
-            desenharMontagem();
-        });
-
-        document.getElementById("zoom-out").addEventListener("click", () => {
-            escala *= 0.9;
-            desenharMontagem();
-        });
-
-        document.getElementById("mover").addEventListener("mousedown", () => {
-            movendo = true;
-        });
-
-        document.addEventListener("mouseup", () => {
-            movendo = false;
-        });
-
-        document.addEventListener("mousemove", (e) => {
-            if (movendo) {
-                offsetX += e.movementX;
-                offsetY += e.movementY;
-                desenharMontagem();
-            }
-        });
-
-        document.getElementById("download").addEventListener("click", () => {
-            const link = document.createElement("a");
-            link.download = "montagem.png";
-            link.href = canvas.toDataURL("image/png");
-            link.click();
-        });
-    </script>
 </body>
 </html>
