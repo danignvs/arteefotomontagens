@@ -93,12 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
             tempCtx.drawImage(moldura, 0, 0, tempCanvas.width, tempCanvas.height);
         }
         
-        tempCanvas.toBlob(function(blob) {
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "montagem.png";
-            link.click();
-            URL.revokeObjectURL(link.href);
-        }, "image/png");
+        const link = document.createElement("a");
+        link.href = tempCanvas.toDataURL("image/png");
+        link.download = "montagem.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     });
 });
