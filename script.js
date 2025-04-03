@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function carregarGaleria() {
     const imagens = [
-        { url: "molduras/anjinha_feliz.png", titulo: "Anjinha Feliz" },
-        { url: "molduras/anjinhos.png", titulo: "Anjinhos" },
-        { url: "molduras/anjinho.png", titulo: "Anjinho" }
+        { url: "molduras/chico-bento_2025.png", titulo: "Chico Bento" },
+        { url: "molduras/chico-bento_e_rosinha_2025.png", titulo: "Chico Bento e Rosinha" },
+        { url: "molduras/rosinha_2025.png", titulo: "Rosinha" }
     ];
 
     const galeria = document.getElementById("galeria");
