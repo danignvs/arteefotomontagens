@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const molduraImg = document.getElementById("moldura");
     const fotoInput = document.getElementById("fotoInput");
     const fotoCanvas = document.getElementById("fotoCanvas");
     const ctx = fotoCanvas.getContext("2d");
@@ -84,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tempCanvas.height = fotoCanvas.height;
         const tempCtx = tempCanvas.getContext("2d");
         
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         if (foto.width && foto.height) {
             const scaledWidth = foto.width * escala;
             const scaledHeight = foto.height * escala;
@@ -93,9 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
             tempCtx.drawImage(moldura, 0, 0, tempCanvas.width, tempCanvas.height);
         }
         
-        const link = document.createElement("a");
-        link.download = "montagem.png";
-        link.href = tempCanvas.toDataURL("image/png");
-        link.click();
+        tempCanvas.toBlob(function(blob) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "montagem.png";
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }, "image/png");
     });
 });
