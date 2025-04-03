@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const fotoCanvas = document.getElementById("fotoCanvas");
     const ctx = fotoCanvas.getContext("2d");
     const downloadBtn = document.getElementById("downloadBtn");
+    const zoomInBtn = document.getElementById("zoomIn");
+    const zoomOutBtn = document.getElementById("zoomOut");
 
     let foto = new Image();
     let moldura = new Image();
-    let fotoX = 0, fotoY = 0;
+    let fotoX = 0, fotoY = 0, escala = 1;
     let arrastando = false;
 
     // Carregar a moldura
@@ -34,7 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function desenharMontagem() {
         ctx.clearRect(0, 0, fotoCanvas.width, fotoCanvas.height);
         if (foto.width && foto.height) {
-            ctx.drawImage(foto, fotoX, fotoY, fotoCanvas.width, fotoCanvas.height);
+            const scaledWidth = foto.width * escala;
+            const scaledHeight = foto.height * escala;
+            ctx.drawImage(foto, fotoX, fotoY, scaledWidth, scaledHeight);
         }
         if (moldura.width && moldura.height) {
             ctx.drawImage(moldura, 0, 0, fotoCanvas.width, fotoCanvas.height);
@@ -60,6 +64,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fotoCanvas.addEventListener("mouseleave", function () {
         arrastando = false;
+    });
+
+    // Função de zoom
+    zoomInBtn.addEventListener("click", function () {
+        escala *= 1.1;
+        desenharMontagem();
+    });
+
+    zoomOutBtn.addEventListener("click", function () {
+        escala *= 0.9;
+        desenharMontagem();
     });
 
     // Botão de download
