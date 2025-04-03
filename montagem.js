@@ -76,8 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
         desenharMontagem();
     });
 
-    // Botão de download corrigido
+    // Botão de download corrigido com log de depuração
     downloadBtn.addEventListener("click", function () {
+        console.log("Botão de download clicado");
         const tempCanvas = document.createElement("canvas");
         tempCanvas.width = fotoCanvas.width;
         tempCanvas.height = fotoCanvas.height;
@@ -94,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         const imagemURL = tempCanvas.toDataURL("image/png");
+        console.log("Imagem gerada para download", imagemURL);
+        
         const link = document.createElement("a");
         link.href = imagemURL;
         link.download = "montagem.png";
