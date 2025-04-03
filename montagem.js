@@ -93,8 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
             tempCtx.drawImage(moldura, 0, 0, tempCanvas.width, tempCanvas.height);
         }
         
+        const imagemURL = tempCanvas.toDataURL("image/png");
         const link = document.createElement("a");
-        link.href = tempCanvas.toDataURL("image/png");
+        link.href = imagemURL;
         link.download = "montagem.png";
         document.body.appendChild(link);
         link.click();
