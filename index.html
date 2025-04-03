@@ -10,12 +10,18 @@
 <body>
     <h1>Galeria de Molduras</h1>
     <div class="galeria" id="galeria"></div>
-    <div class="popup" id="popup">
+    <div class="popup" id="popup" style="display: none;">
         <span class="fechar" onclick="fecharPopup()">&times;</span>
         <span class="nav prev" onclick="navegar(-1)">&#10094;</span>
         <img id="imagemPopup" src="" alt="">
         <span class="nav next" onclick="navegar(1)">&#10095;</span>
         <a id="montagemLink" href="#" class="montagem-btn">Fazer Montagem</a>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            carregarGaleria();
+        });
+    </script>
 </body>
 </html>
+
