@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montagem - Arte e Foto Montagens</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/montagem.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Arte e Foto Montagens</h1>
+        <button onclick="window.location.href='index.html'">Voltar para Temas</button>
+    </header>
+    <main>
+        <section id="montage-area">
+            <h2>Faça sua Montagem</h2>
+            <div class="montage-container responsive-canvas"> <!- Adicionada a classe responsive-canvas -->
+                <div class="frame-preview">
+                    <img id="montage-frame" src="" alt="Moldura Selecionada">
+                </div>
+                <canvas id="montage-canvas"></canvas>
+            </div>
+            <div class="controls">
+                <label for="upload-photo" class="upload-button">Enviar sua Foto</label>
+                <input type="file" id="upload-photo" accept="image/*">
+                <div class="adjustments">
+                    <button onclick="zoomPhoto(0.1)">Aumentar Foto</button>
+                    <button onclick="zoomPhoto(-0.1)">Diminuir Foto</button>
+                    <button onclick="rotatePhoto('left')">Rotacionar Esquerda</button>
+                    <button onclick="rotatePhoto('right')">Rotacionar Direita</button>
+                </div>
+                <button onclick="saveMontage()">Salvar Montagem</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Arte e Foto Montagens</p>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/montagem.js"></script>
+</body>
+</html>
+

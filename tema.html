@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema: Marvel - Arte e Foto Montagens</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tema.css">
+</head>
+<body>
+    <header>
+        <h1>Arte e Foto Montagens</h1>
+        <button onclick="window.location.href='index.html'">Voltar para Temas</button>
+    </header>
+    <main>
+        <section id="gallery">
+            <h2>Tema: <span id="theme-name"></span></h2>
+            <div class="image-grid">
+                </div>
+        </section>
+
+        <div id="image-popup" class="popup">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <img id="popup-image" src="" alt="Moldura">
+            <div class="popup-actions">
+                <button onclick="downloadImage()">Salvar</button>
+                <button onclick="openMontagePage()">Fazer uma Montagem</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Arte e Foto Montagens</p>
+    </footer>
+    <script src="js/script.js"></script>
+    <script>
+        // Obtém o nome do tema da URL e carrega as imagens
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const themeName = urlParams.get('tema');
+            const themeNameElement = document.getElementById('theme-name');
+            if (themeNameElement && themeName) {
+                themeNameElement.textContent = themeName.charAt(0).toUpperCase() + themeName.slice(1); // Capitaliza a primeira letra
+                loadThemeImages(themeName);
+            }
+        });
+    </script>
+</body>
+</html>
