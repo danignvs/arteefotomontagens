@@ -1,0 +1,60 @@
+me de os códigos para criar um site de galeria de imagens com html, css, javascript e json com opção de busca e filtro por temas. o site deve ser todo responsivo e minimalista.
+preciso de um arquivo json para cada tema, onde cadastrarei as imagens com URL e titulo.
+cada tema aparecera em uma pagina diferente, com as imagens organizadas em ordem alfabética pelo tema. essas imagens são molduras digitais gratuitas para fotos, convites, etiquetas e personalizados no geral.
+clicando nas miniaturas das molduras abre um popup com botao de salvar a imagem e um botão para fazer uma montagem. clicando em fazer uma montagem o visitante vai para uma pagina de montagem onde ele envia sua foto que fica por baixo da moldura do site. a moldura fica fixa e a pessoa consegue movimentar, aumentar e diminuir a foto para melhor posicionar.
+como algumas imagens tem a proporção 3x2 e outras tem a proporção 4x3, o tamanho do canvas deve ser de acordo com a moldura.
+
+aproveite esse css e complemente conforme achar necessario:
+
+body {
+    font-family: 'Montserrat', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f8f0fa; 
+    color: #333;
+    min-width: 300px;
+}
+
+header {
+    background-color: #8e44ad;
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    font-family: 'Pacifico', cursive; 
+    font-size: 2.5em;
+    color: #ffffff; 
+}
+
+button {
+    background-color: #77c2c5;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px; 
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #579ea1;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em; /* Ajusta a fonte se necessário */
+    }
+
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.5em;
+    }
